@@ -22,10 +22,10 @@ USE `mydb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
-  `first_name` VARCHAR(45) NOT NULL,
-  `last_name` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(145) NOT NULL,
+  `first_name` VARCHAR(145) NOT NULL,
+  `last_name` VARCHAR(145) NOT NULL,
+  `email` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
@@ -37,16 +37,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`organisation` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(145) NOT NULL,
   `author_id` INT NOT NULL,
   `date` DATE NOT NULL,
-  `address` VARCHAR(45) NULL,
+  `address` VARCHAR(145) NULL,
   `connection_to_ai` LONGTEXT NULL,
   `body` LONGTEXT NULL,
-  `email` VARCHAR(45) NULL,
+  `email` VARCHAR(145) NULL,
   `organisation_type` ENUM('Association', 'Centre', 'Company', 'Education Institution', 'Research Institution') NOT NULL,
   `relation_to_organisation` TINYINT(1) NOT NULL,
-  `website` VARCHAR(45) NULL,
+  `website` VARCHAR(145) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_organisation_author_idx` (`author_id` ASC),
   CONSTRAINT `fk_organisation_author`
@@ -62,7 +62,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ai_asset` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(145) NOT NULL,
   `author_id` INT NULL DEFAULT NULL,
   `date` DATE NOT NULL,
   `asset_type` ENUM('As a Service', 'Dataset', 'Docker container', 'Executable', 'Jupyter Notebook', 'Library', 'ML Model', 'Tutorial') NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ai_asset` (
   `research_areas` ENUM('Collaborative AI', 'Explainable AI', 'Integrative AI', 'Physical AI', 'Verifiable AI') NULL DEFAULT NULL,
   `trustworthy_ai` LONGTEXT NULL DEFAULT NULL,
   `trustworthy_ai_assessment` ENUM('TRL 1-2 (Basic research)', 'TRL 3-5 (Technology development)', 'TRL 6-7 (Technology demonstration)', 'TRL 8-9 (System test & operation)') NULL DEFAULT NULL,
-  `website` VARCHAR(45) NOT NULL,
+  `website` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_ai_asset_author_idx` (`author_id` ASC),
   INDEX `fk_ai_asset_organisation_idx` (`organisation_id` ASC),
@@ -99,7 +99,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`news` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(145) NOT NULL,
   `author_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `body` LONGTEXT NOT NULL,
@@ -120,7 +120,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`open_call` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(145) NOT NULL,
   `author_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `body` LONGTEXT NOT NULL,
@@ -166,10 +166,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`case_study` (
   `author_id` INT NOT NULL,
   `body` LONGTEXT NOT NULL,
   `organisation_id` INT NULL,
-  `email` VARCHAR(45) NULL,
+  `email` VARCHAR(145) NULL,
   `image` MEDIUMBLOB NULL,
   `media` ENUM('books', 'Eclipse', 'education', 'library') NULL,
-  `website` VARCHAR(45) NULL,
+  `website` VARCHAR(145) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_case_study_author_idx` (`author_id` ASC),
   INDEX `fk_case_study_organisation_idx` (`organisation_id` ASC),
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`event` (
   `date_of_event` DATE NOT NULL,
   `description` LONGTEXT NOT NULL,
   `media` ENUM('books', 'Eclipse', 'education', 'library') NULL,
-  `registration_link` VARCHAR(45) NULL,
+  `registration_link` VARCHAR(145) NULL,
   `revision_comments` LONGTEXT NULL,
   `event_type` ENUM('AI Event', 'Web Cafe') NULL,
   PRIMARY KEY (`id`),
@@ -219,13 +219,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`educational_resource` (
   `author_id` INT NOT NULL,
   `date` DATE NULL,
   `contact_details` LONGTEXT NULL,
-  `country` VARCHAR(45) NULL,
+  `country` VARCHAR(145) NULL,
   `credits` TINYINT(1) NULL,
   `duration_minutes_and_hours` ENUM('Less than 1 hour', '1-3 hours', '4-10 hours', '10+ hours') NULL,
   `organisation_id` INT NULL,
   `educational_type` ENUM('Distance Learning', 'Blended Learning', 'MOOC', 'On-site', 'Tutorial') NOT NULL,
   `educational_resourcecol` ENUM('1-3 hours (lower-paced)', '4-10 hours (quarter-speed)', '11-24 hours (Part-time)', '25-40 hours (intensive courses)') NULL,
-  `tags` VARCHAR(45) NULL,
+  `tags` VARCHAR(145) NULL,
   `language` ENUM('International', 'Bulgarian', 'Croatian', 'Czech', 'Danish', 'Dutch', 'English', 'Estonian', 'Finnish', 'French', 'German', 'Greek', 'Hungarian', 'Irish', 'Italian', 'Latvian', 'Lithuanian', 'Maltese', 'Polish', 'Portuguese', 'Romanian', 'Slovak', 'Slovenian', 'Spanish', 'Swedish') NOT NULL,
   `educational_level` ENUM('Basic', 'Advanced', 'Bachelor', 'Master') NOT NULL,
   `media` ENUM('books', 'Eclipse', 'education', 'library') NULL,
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`educational_resource` (
   `body` LONGTEXT NOT NULL,
   `target_audience` SET('Working professionals', 'Students in Higher Education', 'Teachers in Secondary School') NOT NULL,
   `duration_years` INT NULL,
-  `website` VARCHAR(45) NOT NULL,
+  `website` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_educational_resource_author_idx` (`author_id` ASC),
   INDEX `fk_educational_resource_organisation_idx` (`organisation_id` ASC),
@@ -256,8 +256,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`business_category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`business_category` (
-  `id` INT NOT NULL,
-  `category` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `category_UNIQUE` (`category` ASC))
 ENGINE = InnoDB;
@@ -399,8 +399,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`technical_category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`technical_category` (
-  `id` INT NOT NULL,
-  `category` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `category_UNIQUE` (`category` ASC))
 ENGINE = InnoDB;
@@ -520,8 +520,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`organisation_review` (
   `comment` LONGTEXT NOT NULL,
   PRIMARY KEY (`id`, `organisation_id`),
   CONSTRAINT `fk_organisation_review_organisation1`
-    FOREIGN KEY ()
-    REFERENCES `mydb`.`organisation` ()
+    FOREIGN KEY (`organisation_id`)
+    REFERENCES `mydb`.`organisation` (`id`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
@@ -599,8 +599,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`tag`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`tag` (
-  `id` INT NOT NULL,
-  `tag` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tag` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `tag_UNIQUE` (`tag` ASC))
 ENGINE = InnoDB;
@@ -747,12 +747,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`project` (
   `author_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `media` MEDIUMBLOB NULL,
-  `funding_call` VARCHAR(45) NULL,
+  `funding_call` VARCHAR(145) NULL,
   `body` LONGTEXT NOT NULL,
   `image` MEDIUMBLOB NULL,
   `acronym` LONGTEXT NULL,
   `project_type` SET('Micro-project in Humane-AI-Net', 'PhD project', 'Student project') NULL,
-  `links` VARCHAR(45) NULL,
+  `links` VARCHAR(145) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_project_author_idx` (`author_id` ASC),
   CONSTRAINT `fk_project_author`
@@ -838,7 +838,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`research_bundle` (
   `organisation_id` INT NULL,
   `logo` MEDIUMBLOB NULL,
   `project_type` SET('Micro-project in Humane-AI-Net', 'PhD project', 'Student project') NOT NULL,
-  `links` VARCHAR(45) NULL,
+  `links` VARCHAR(145) NULL,
   `body` LONGTEXT NOT NULL,
   `research_bundlecol` ENUM('TRL 1-2 (Basic research)', 'TRL 3-5 (Technology development)', 'TRL 6-7 (Technology demonstration)', 'TRL 8-9 (System test & operation)') NULL,
   PRIMARY KEY (`id`),
