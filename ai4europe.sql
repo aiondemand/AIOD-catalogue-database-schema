@@ -63,7 +63,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ai_asset`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ai_asset` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `version` INT NOT NULL,
   `title` VARCHAR(500) NOT NULL,
   `author_id` INT NULL DEFAULT NULL,
