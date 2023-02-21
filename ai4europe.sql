@@ -1221,7 +1221,6 @@ ENGINE = InnoDB;
 -- Table `mydb`.`organisation_has_business_category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`organisation_has_business_category` (
-  `id` INT NULL,
   `organisation_id` INT NOT NULL,
   `business_category_id` INT NOT NULL,
   PRIMARY KEY (`organisation_id`, `business_category_id`),
